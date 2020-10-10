@@ -40,11 +40,14 @@ describe "As a visitor" do
 
         visit '/shelters'
         click_link("New Shelter")
+        
         expect(current_path).to eq '/shelters/new'
-        # binding.pry
-        # Need to fix has field expectations
-        # expect(page).to has_field?('name')
-        # expect(page).to has_button?('Create Shelter')
+        expect(page).to have_field('name')
+        expect(page).to have_field('address')
+        expect(page).to have_field('city')
+        expect(page).to have_field('state')
+        expect(page).to have_field('zip')
+        expect(page).to have_button('Create Shelter')
       end
       describe "When I fill out the form with a new shelter's name, address, city, state and zip And I click the button 'Create Shelter' to submit the form" do
         it "Then a `POST` request is sent to '/shelters' and a new shelter is created" do
