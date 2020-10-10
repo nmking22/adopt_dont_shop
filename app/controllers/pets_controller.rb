@@ -1,5 +1,6 @@
 class PetsController < ApplicationController
   def index
-    @pets = ["pet_1", "pet_2", "pet_3"]
+    # Why does this work with Pet.all and not Pets.all??
+    @pets = Pet.all
   end
 end
