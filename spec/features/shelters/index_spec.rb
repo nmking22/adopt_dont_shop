@@ -107,3 +107,38 @@ describe "As a visitor" do
     end
   end
 end
+
+describe "As a visitor" do
+  describe "When I visit the shelter index page" do
+    it "Next to every shelter, I see a link to delete that shelter's info" do
+      shelter_1 = Shelter.create(name: "Shelter 1",
+                                 address: "123 Fake St.",
+                                 city: "Denver",
+                                 state: "CO",
+                                 zip: "88888")
+
+      visit '/shelters'
+      expect(page).to have_link('Delete Shelter')
+    end
+    describe "When I click the link" do
+      it "I am returned to the Shelter Index Page where I no longer see that shelter" do
+        shelter_1 = Shelter.create(name: "Shelter 1",
+                                   address: "123 Fake St.",
+                                   city: "Denver",
+                                   state: "CO",
+                                   zip: "88888")
+
+        visit '/shelters'
+
+        click_link('Delete Shelter')
+
+        expect(current_path).to eq "/shelters"
+        expect(page).to have_no_content("#{shelter_1.name}")
+        expect(page).to have_no_content("#{shelter_1.address}")
+        expect(page).to have_no_content("#{shelter_1.city}")
+        expect(page).to have_no_content("#{shelter_1.state}")
+        expect(page).to have_no_content("#{shelter_1.zip}")
+      end
+    end
+  end
+end
