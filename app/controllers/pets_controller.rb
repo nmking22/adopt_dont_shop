@@ -26,4 +26,8 @@ class PetsController < ApplicationController
 
     redirect_to "/shelters/#{params[:id]}/pets"
   end
+
+  def edit
+    @pet = Pet.find(params[:id])
+  end
 end
