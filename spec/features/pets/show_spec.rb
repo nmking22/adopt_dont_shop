@@ -119,6 +119,8 @@ describe "As a visitor" do
                                  location: "#{shelter_1.name}",
                                  shelter_id: "#{shelter_1.id}")
 
+        visit "/pets/#{pet_1.id}"
+
         click_link('Delete Pet')
 
         expect(current_path).to eq "/pets"
