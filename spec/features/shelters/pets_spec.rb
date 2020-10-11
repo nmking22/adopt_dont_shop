@@ -2,12 +2,18 @@ require 'rails_helper'
 
 describe "As a visitor" do
   describe "When I visit '/shelters/:shelter_id/pets'" do
-    it "Then I see each Pet that can be adopted from that Shelter with that shelter_id including the Pet's image, name, age and sex" do
+    it "Then I see each Pet that can be adopted from that Shelter with that shelter_id including the Pet's image, name, age and sex, and I do not see pets from other shelters" do
       shelter_1 = Shelter.create(name: "Shelter 1",
                                  address: "123 Fake St.",
                                  city: "Denver",
                                  state: "CO",
                                  zip: "88888")
+      shelter_2 = Shelter.create(name: "Shelter 2",
+                                 address: "321 Fake St.",
+                                 city: "Aspen",
+                                 state: "CO",
+                                 zip: "82222")
+
       pet_1 = Pet.create(image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg",
                          name: "Doc",
                          description: "Golden Retriever",
@@ -24,6 +30,14 @@ describe "As a visitor" do
                          adoption_status: "Adoptable",
                          location: "Shelter 1",
                          shelter_id: shelter_1.id)
+      pet_3 = Pet.create(image: "https://dogtime.com/assets/uploads/2018/10/dogs-cover.jpg",
+                         name: "Killa Bee",
+                         description: "Boxer",
+                         age: "7",
+                         sex: "female",
+                         adoption_status: "adopted",
+                         location: "Shelter 2",
+                         shelter_id: shelter_2.id)
 
       visit "/shelters/#{shelter_1.id}/pets"
 
@@ -33,6 +47,12 @@ describe "As a visitor" do
       expect(page).to have_content("#{pet_2.image}")
       expect(page).to have_content("#{pet_1.age}")
       expect(page).to have_content("#{pet_2.sex}")
+
+      expect(page).to have_no_content("#{pet_3.name}")
+      expect(page).to have_no_content("#{pet_3.image}")
+      expect(page).to have_no_content("#{pet_3.description}")
+      expect(page).to have_no_content("#{pet_3.age}")
+      expect(page).to have_no_content("#{pet_3.sex}")
     end
   end
 end
