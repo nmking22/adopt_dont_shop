@@ -29,7 +29,7 @@ describe "As a visitor" do
       visit '/pets'
       expect(page).to have_content("All Pets")
       expect(page).to have_link("#{pet_2.name}")
-      expect(page).to have_content("#{pet_1.image}")
+      expect(page).to have_xpath("//img[contains(@src,'#{pet_1.image}')]")
       expect(page).to have_content("#{pet_2.name}")
       expect(page).to have_content("#{pet_1.age}")
       expect(page).to have_content("#{pet_2.sex}")
