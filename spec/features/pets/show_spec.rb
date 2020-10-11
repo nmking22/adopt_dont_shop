@@ -81,3 +81,54 @@ describe "As a visitor" do
     end
   end
 end
+
+describe "As a visitor" do
+  describe "When I visit a pet show page" do
+    it "Then I see a link to delete the pet 'Delete Pet'" do
+      shelter_1 = Shelter.create(name: "Shelter 1",
+                                 address: "123 Fake St.",
+                                 city: "Denver",
+                                 state: "CO",
+                                 zip: "88888")
+      pet_1 = Pet.create(image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg",
+                               name: "Doc",
+                               description: "Golden Retriever",
+                               age: "4",
+                               sex: "male",
+                               adoption_status: "adoptable",
+                               location: "#{shelter_1.name}",
+                               shelter_id: "#{shelter_1.id}")
+
+      visit "/pets/#{pet_1.id}"
+
+      expect(page).to have_link('Delete Pet')
+    end
+    describe "When I click the link" do
+      it "Then a 'DELETE' request is sent to '/pets/:id', the pet is deleted, and I am redirected to the pet index page where I no longer see this pet" do
+        shelter_1 = Shelter.create(name: "Shelter 1",
+                                   address: "123 Fake St.",
+                                   city: "Denver",
+                                   state: "CO",
+                                   zip: "88888")
+        pet_1 = Pet.create(image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg",
+                                 name: "Doc",
+                                 description: "Golden Retriever",
+                                 age: "4",
+                                 sex: "male",
+                                 adoption_status: "adoptable",
+                                 location: "#{shelter_1.name}",
+                                 shelter_id: "#{shelter_1.id}")
+
+        click_link('Delete Pet')
+
+        expect(current_path).to eq "/pets"
+
+        expect(page).to have_no_content("#{pet_1.name}")
+        expect(page).to have_no_content("#{pet_1.image}")
+        expect(page).to have_no_content("#{pet_1.description}")
+        expect(page).to have_no_content("#{pet_1.age}")
+        expect(page).to have_no_content("#{pet_1.sex}")
+      end
+    end
+  end
+end
