@@ -1,0 +1,14 @@
+<%= form_tag("/shelters/#{@shelter.id}/pets") do %>
+  <p><%= label_tag 'Pet Name' %></p>
+  <%= text_area_tag 'name' %>
+  <p><%= label_tag 'Pet Image' %></p>
+  <%= text_area_tag 'image' %>
+  <p><%= label_tag 'Pet Description' %></p>
+  <%= text_area_tag 'description' %>
+  <p><%= label_tag 'Pet Age' %></p>
+  <%= text_area_tag 'age' %>
+  <p><%= label_tag 'Pet Sex' %></p>
+  <%= text_area_tag 'sex' %>
+
+  <div><%= submit_tag 'Create Pet' %></div>
+<% end %>
