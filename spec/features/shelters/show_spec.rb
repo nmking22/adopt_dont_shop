@@ -87,3 +87,19 @@ describe "As a visitor" do
     end
   end
 end
+
+describe "As a visitor" do
+  describe "When I visit a shelter show page ('/shelters/:id')" do
+    it "Then I see a link to take me to that shelter's pets page ('/shelters/:id/pets')" do
+      shelter_1 = Shelter.create(name: "Shelter 1",
+                                 address: "123 Fake St.",
+                                 city: "Denver",
+                                 state: "CO",
+                                 zip: "88888")
+
+      visit "/shelters/#{shelter_1.id}"
+
+      expect(page).to have_link("#{shelter_1.name}'s Pets")
+    end
+  end
+end
