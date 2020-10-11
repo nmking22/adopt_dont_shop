@@ -1,3 +1,5 @@
+<header><%= link_to 'Shelters Index', '/shelters' %> <%= link_to 'Pets Index', '/pets' %></header>
+
 <%= form_tag('/shelters') do %>
   <p><%= label_tag 'Shelter Name' %></p>
   <%= text_area_tag 'name' %>
