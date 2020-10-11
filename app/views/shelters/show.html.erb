@@ -4,10 +4,12 @@
 
 <%= link_to "#{@shelter.name}'s Pets", "/shelters/#{@shelter.id}/pets" %>
 
-<p><%= "Address: #{@shelter.address}" %></p>
-<p><%= "City: #{@shelter.city}" %></p>
-<p><%= "State: #{@shelter.state}" %></p>
-<p><%= "Zip Code: #{@shelter.zip}" %></p>
+<section>
+  <p><%= "Address: #{@shelter.address}" %></p>
+  <p><%= "City: #{@shelter.city}" %></p>
+  <p><%= "State: #{@shelter.state}" %></p>
+  <p><%= "Zip Code: #{@shelter.zip}" %></p>
+</section>
 
 <%= link_to 'Update Shelter', "/shelters/#{@shelter.id}/edit" %>
 

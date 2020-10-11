@@ -2,11 +2,16 @@
 
 <h1><%= @pet.name %></h1>
 
-<img src= <%= @pet.image %> alt = <%= @pet.name %> height="200">
-<p><%= "Description: #{@pet.description}" %></p>
-<p><%= "Age: #{@pet.age}" %></p>
-<p><%= "Sex: #{@pet.sex}" %></p>
-<p><%= "Adoption Status: #{@pet.adoption_status}" %></p>
+<figure>
+  <img src= <%= @pet.image %> alt = <%= @pet.name %> height="200">
+</figure>
+
+<section>
+  <p><%= "Description: #{@pet.description}" %></p>
+  <p><%= "Age: #{@pet.age}" %></p>
+  <p><%= "Sex: #{@pet.sex}" %></p>
+  <p><%= "Adoption Status: #{@pet.adoption_status}" %></p>
+</section>
 
 <%= link_to 'Update Pet', "/pets/#{@pet.id}/edit" %>
 

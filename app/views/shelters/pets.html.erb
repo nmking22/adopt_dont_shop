@@ -1,6 +1,6 @@
 <header><%= link_to 'Shelters Index', '/shelters' %> <%= link_to 'Pets Index', '/pets' %></header>
 
-<h1><%= link_to "#{@shelter.name}", "/shelters/#{@shelter.id}" %><%= " Available Pets" %></h1>
+<h1><%= link_to "#{@shelter.name}", "/shelters/#{@shelter.id}" %><br><br><%= " Available Pets" %></h1>
 
 <% @pets.each do |pet| %>
   <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>

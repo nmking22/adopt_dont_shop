@@ -3,11 +3,14 @@
 <h1>All Pets</h1>
 
 <% @pets.each do |pet| %>
-  <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
-  <%= link_to 'Update Pet', "/pets/#{pet.id}/edit" %>
-  <%= link_to 'Delete Pet', "/pets/#{pet.id}/destroy", data: {:confirm => "Are you sure you want to delete #{pet.name}?"}, :method => :delete %><br>
-  <img src= <%= pet.image %> alt = <%= pet.name %> height="200">
-  <p><%= "Age: #{pet.age}" %></p>
-  <p><%= "Sex: #{pet.sex}" %></p>
-  <p><%= "Location: #{pet.location}" %></p>
+  <section>
+    <h2><%= link_to "#{pet.name}", "/pets/#{pet.id}" %></h2>
+    <%= link_to 'Update Pet', "/pets/#{pet.id}/edit" %>
+    <%= link_to 'Delete Pet', "/pets/#{pet.id}/destroy", data: {:confirm => "Are you sure you want to delete #{pet.name}?"}, :method => :delete %><br>
+    <br>
+    <img src= <%= pet.image %> alt = <%= pet.name %> height="200">
+    <p><%= "Age: #{pet.age}" %></p>
+    <p><%= "Sex: #{pet.sex}" %></p>
+    <p><%= "Location: #{pet.location}" %></p>
+  </section>
 <% end %>
