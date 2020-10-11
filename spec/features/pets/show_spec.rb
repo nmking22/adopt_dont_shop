@@ -8,7 +8,7 @@ describe "As a visitor" do
                                  city: "Denver",
                                  state: "CO",
                                  zip: "88888")
-      pet_1 = Pet.create(image: "https://dogtime.com/assets/uploads/2018/10/puppies-cover.jpg",
+      pet_1 = Pet.create(image: "https://image.shutterstock.com/z/stock-photo-dog-playing-outside-smiles-231023848.jpg",
                                name: "Doc",
                                description: "Golden Retriever",
                                age: "4",
@@ -20,7 +20,7 @@ describe "As a visitor" do
       visit "/pets/#{pet_1.id}"
 
       expect(page).to have_content("#{pet_1.name}")
-      expect(page).to have_content("#{pet_1.image}")
+      expect(page).to have_xpath("//img[contains(@src,'#{pet_1.image}')]")
       expect(page).to have_content("#{pet_1.description}")
       expect(page).to have_content("#{pet_1.age}")
       expect(page).to have_content("#{pet_1.sex}")
@@ -126,7 +126,7 @@ describe "As a visitor" do
         expect(current_path).to eq "/pets"
 
         expect(page).to have_no_content("#{pet_1.name}")
-        expect(page).to have_no_content("#{pet_1.image}")
+        expect(page).to have_no_xpath("//img[contains(@src,'#{pet_1.image}')]")
         expect(page).to have_no_content("#{pet_1.description}")
         expect(page).to have_no_content("#{pet_1.age}")
         expect(page).to have_no_content("#{pet_1.sex}")
