@@ -102,7 +102,7 @@ describe "As a visitor" do
         expect(page).to have_field('city')
         expect(page).to have_field('state')
         expect(page).to have_field('zip')
-        expect(page).to have_link('Update Shelter')
+        expect(page).to have_button('Update Shelter')
       end
     end
   end
