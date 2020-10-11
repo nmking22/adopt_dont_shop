@@ -30,7 +30,7 @@ describe "As a visitor" do
                          adoption_status: "Adoptable",
                          location: "Shelter 1",
                          shelter_id: shelter_1.id)
-      pet_3 = Pet.create(image: "https://dogtime.com/assets/uploads/2018/10/dogs-cover.jpg",
+      pet_3 = Pet.create(image: "https://image.shutterstock.com/z/stock-photo-dog-playing-outside-smiles-231023848.jpg",
                          name: "Killa Bee",
                          description: "Boxer",
                          age: "7",
@@ -44,12 +44,12 @@ describe "As a visitor" do
       expect(page).to have_content("#{shelter_1.name} Available Pets")
       expect(page).to have_link("#{shelter_1.name}")
       expect(page).to have_content("#{pet_1.name}")
-      expect(page).to have_content("#{pet_2.image}")
+      expect(page).to have_xpath("//img[contains(@src,'#{pet_2.image}')]")
       expect(page).to have_content("#{pet_1.age}")
       expect(page).to have_content("#{pet_2.sex}")
 
       expect(page).to have_no_content("#{pet_3.name}")
-      expect(page).to have_no_content("#{pet_3.image}")
+      expect(page).to have_no_xpath("//img[contains(@src,'#{pet_3.image}')]")
       expect(page).to have_no_content("#{pet_3.description}")
       expect(page).to have_no_content("#{pet_3.age}")
       expect(page).to have_no_content("#{pet_3.sex}")
