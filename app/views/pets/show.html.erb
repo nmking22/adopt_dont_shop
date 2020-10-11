@@ -5,3 +5,5 @@
 <p><%= "Age: #{@pet.age}" %></p>
 <p><%= "Sex: #{@pet.sex}" %></p>
 <p><%= "Adoption Status: #{@pet.adoption_status}" %></p>
+
+<%= link_to 'Update Pet', "/pets/#{@pet.id}/edit" %>
