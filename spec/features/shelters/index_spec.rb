@@ -18,6 +18,7 @@ describe "As a visitor" do
 
       expect(page).to have_content("All Shelters")
       expect(page).to have_content("#{shelter_1.name}")
+      expect(page).to have_link("#{shelter_1.name}")
       expect(page).to have_content("#{shelter_2.address}")
       expect(page).to have_content("#{shelter_1.city}")
       expect(page).to have_content("#{shelter_2.state}")

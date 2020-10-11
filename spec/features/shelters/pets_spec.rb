@@ -27,7 +27,8 @@ describe "As a visitor" do
 
       visit "/shelters/#{shelter_1.id}/pets"
 
-      expect(page).to have_content("Pets at #{shelter_1.name}")
+      expect(page).to have_content("#{shelter_1.name} Available Pets")
+      expect(page).to have_link("#{shelter_1.name}")
       expect(page).to have_content("#{pet_1.name}")
       expect(page).to have_content("#{pet_2.image}")
       expect(page).to have_content("#{pet_1.age}")

@@ -12,6 +12,11 @@ class PetsController < ApplicationController
   end
 
   def create
+    @shelters = Shelter.all
+    current_shelter = @shelters.find do |shelter|
+      shelter.id == params[:id].to_i
+    end
+
     pet = Pet.create({
       name: params[:name],
       image: params[:image],
@@ -19,7 +24,8 @@ class PetsController < ApplicationController
       age: params[:age],
       sex: params[:sex],
       adoption_status: 'adoptable',
-      shelter_id: params[:id]
+      shelter_id: params[:id],
+      location: current_shelter.name
       })
 
     pet.save
